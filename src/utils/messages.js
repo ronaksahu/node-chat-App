@@ -6,6 +6,14 @@ const generateMessage = (username, text) => {
     }
 }
 
+const generateBanner = (text) => {
+    return {
+        text,
+        createdAt: new Date().getTime()
+    }
+}
+
 module.exports = {
-    generateMessage
+    generateMessage,
+    generateBanner
 }
