@@ -7,6 +7,7 @@ const $sendLocationButton = document.querySelector('#send-location')
 const $messages = document.querySelector('#messages')
 
 const messageTemplates = document.querySelector('#message-template').innerHTML
+const bannerTemplates = document.querySelector('#banner-template').innerHTML
 const urlTemplates = document.querySelector('#url-template').innerHTML
 const sidebarTemplate = document.querySelector('#sidebar-template').innerHTML
 
@@ -37,6 +38,17 @@ socket.on('message', (messages) => {
         username: messages.username,
         message : messages.text,
         createdAt : moment(messages.createdAt).format('h:m a')
+    })
+    $messages.insertAdjacentHTML('beforeend',html)
+    autoScroll()
+})
+
+
+socket.on('banner', (banner) => {
+    console.log(banner.text)
+    const html = Mustache.render(bannerTemplates, { 
+        message : banner.text,
+        createdAt : moment(banner.createdAt).format('h:m a')
     })
     $messages.insertAdjacentHTML('beforeend',html)
     autoScroll()
