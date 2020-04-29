@@ -26,6 +26,5 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
-    - run: git push master heroku
       env:
         CI: true
